@@ -23,67 +23,87 @@ class LinkedList:
     
     def print_list(self):
         temp = self.head
-        duration = self.length
-        i = 1 
-        while i <= duration :
+        l = self.length
+        i = 0
+        while temp is not None and i <= l+1:
             print(temp.value)
-            temp = temp.next  
-            i += 1  
+            temp = temp.next    
+            i+=1
             
     def make_empty(self):
         self.head = None
         self.length = 0
 
     def reverse_between (self, pos1, pos2):
+        if pos1 == pos2:
+            return None
+        
         current = self.head 
-        l = self.length
-        next = current.next
-        i = 1 
+        previous = current
+        next = current.next 
+
+        i = 0
+        #lining up with the start 
         while i < pos1:
             previous = current
             current = next 
             next = current.next 
             i += 1
         
+        print(f"reversing list at {current.value}")
+
         pre_head = previous
         head = current 
-        i += 1 
+        
+        print(f"pre_head is {pre_head.value}, head is {head.value}")
 
-
-        print(f"starting loop at possition {i}")
-        while i <= pos2 : 
-            current.next = previous 
-
-            previous = current 
-            current = next
+        #reversing the block 
+        while i < pos2  : 
+            #move up 1 
+            
+            previous = current
+            current = next 
             next = current.next 
-
-            print(f"previous is {previous.value}, current is {current.value}, i is {i}" )
-            i += 1 
+            
+            if next != None:
+                print(f"previous is {previous.value} , current is {current.value},next is {next.value}")
+            else:
+                print(f"previous is {previous.value} , current is {current.value},next is None")
+            i += 1
+            #reverse link 
+            current.next = previous
             
 
-        current.next = previous 
-        head.next = next 
-        pre_head.next = current 
+            
+        # print(f"pre_head is {pre_head.value}, head is {head.value}, next is {next.value}")
+        #setting the block in list 
+        if pos1 == 0: 
+            self.head = current
+        else:
+            pre_head.next = current 
 
-        
+        # print(f"pre_head is {pre_head.value if pre_head != None else 'None' }, head is {head.value}, next is {next.value if next != None else 'None'}")
+        # head.next = next
+        if next != None: 
+            head.next = next
+        else:
+            head.next = None 
+        # else 
 
-        
-        
 
 
-linked_list = LinkedList(1)
+linked_list = LinkedList(0)
+linked_list.append(1)
 linked_list.append(2)
 linked_list.append(3)
 linked_list.append(4)
-linked_list.append(5)
 
+print("Original linked list: ")
 linked_list.print_list()
-linked_list.reverse_between(2,4)
-linked_list.print_list()
-# print("Original linked list: ")
-# linked_list.print_list()
 
+print("reverse entire list")
+linked_list.reverse_between(1,4)
+linked_list.print_list()
 # # Reverse a sublist within the linked listd
 # linked_list.reverse_between(2, 4)
 # print("Reversed sublist (2, 4): ")
