@@ -17,6 +17,54 @@ class DoublyLinkedList:
             print(current.value)
             current = current.next
 
+    def append(self, value):
+        new_node = Node(value)
+        if self.head is None: 
+            self.head = new_node 
+        else:
+            self.tail.next = new_node 
+            new_node.prev = self.tail 
+        self.tail = new_node 
+        self.length += 1 
+        return True 
+    
+    def pop(self):
+        if self.length == 0: 
+            return None 
+        
+        temp = self.tail 
+
+        if self.length == 1: 
+            self.tail = None 
+            self.head = None 
+        else: 
+            self.tail = self.tail.prev      
+            self.tail.next = None 
+            temp.prev = None 
+        
+        self.length -= 1
+
+        return temp
+    
+    def prepend(self,value):
+        
+        new_node = Node(value)
+        if self.length == 0: 
+            self.head = new_node 
+            self.tail = new_node 
+            
+        self.head.prev = new_node
+        new_node.next = self.head 
+
+        self.head = new_node 
+        self.length += 1
+        return True 
 
 my_dll = DoublyLinkedList(7)
+my_dll.append(2)
+
+my_dll.print_list()
+
+my_dll.prepend(3)
+
 my_dll.print_list()
