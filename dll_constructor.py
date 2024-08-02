@@ -89,7 +89,7 @@ class DoublyLinkedList:
         
         return temp
 
-    def set(self,index,value):
+    def set_value(self,index,value):
 
         temp = self.get(index)
         if temp: 
@@ -115,11 +115,6 @@ class DoublyLinkedList:
         new_node.next = temp_next 
 
         return True 
-
-
-        
-
-
 
 my_dll = DoublyLinkedList(1)
 my_dll.append(2)
