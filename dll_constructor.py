@@ -99,23 +99,47 @@ class DoublyLinkedList:
 
     def insert(self, index, value):
         if self.length < index or index < 0: 
-            return None 
+            return False 
         if index == 0: 
-            self.prepend(value)
+            return self.prepend(value)
         if index == self.length:
-            self.append(value)
+            return self.append(value)
         
         new_node = Node(value)
+
+        prev_node = self.get(index-1)
+        next_node = prev_node.next 
+
+        prev_node.next = new_node 
+        next_node.prev = new_node 
+
+        new_node.next = next_node 
+        new_node.prev = prev_node 
         
-        temp = self.get(index)
-        temp_next = temp.next
-        temp.next = new_node 
-        temp_next.prev = new_node
-        new_node.prev = temp
-        new_node.next = temp_next 
-
+        self.length += 1 
         return True 
+    
+    def remove(self, index ):
+        if self.length < index or index < 0: 
+            return None 
+        if index == 0: 
+            return self.pop_first
+        if index == self.length:
+            return self.pop
+        
 
+        temp = self.get(index)
+
+        temp.next.prev = temp.prev 
+        temp.prev.next = temp.next 
+
+        temp.next = None 
+        temp.prev = None 
+
+        self.length -= 1
+
+        return temp.value 
+    
 my_dll = DoublyLinkedList(1)
 my_dll.append(2)
 my_dll.append(3)
@@ -123,6 +147,6 @@ my_dll.append(4)
 my_dll.append(5)
 my_dll.print_list()
 print("-------")
-my_dll.set_value(1,6)
+my_dll.insert(1,6)
 my_dll.print_list()
 
