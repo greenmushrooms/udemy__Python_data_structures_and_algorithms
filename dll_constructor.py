@@ -138,7 +138,7 @@ class DoublyLinkedList:
 
         self.length -= 1
 
-        return temp.value 
+        return temp
     
 my_dll = DoublyLinkedList(1)
 my_dll.append(2)
