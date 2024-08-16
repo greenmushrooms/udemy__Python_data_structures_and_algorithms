@@ -34,13 +34,18 @@ class DoublyLinkedList:
     def reverse(self):
         if self.length < 1: 
             return None 
-        node_prev = self.head
-        node_current = self.head.next 
-        node_next = node_current.next 
-        # for _ in range(self.length -1):
-        #     pass()
-        return True 
+        current = self.head 
+        temp = None 
+        while current is not None:
+            temp = current.prev
+            current.prev = current.next
+            current.next = temp
+            current = current.prev
 
+        if temp is not None:
+            self.head = temp.prev
+
+        return True
 
 
 
