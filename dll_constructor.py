@@ -139,9 +139,20 @@ class DoublyLinkedList:
         self.length -= 1
         return temp
     
-    def is_palindrome(self):
-        l = round((self.length-1)/2)
-        return l
+    def reverse(self):
+        current = self.head
+        self.tail = self.head  
+        prev_node = None
+
+        while current is not None:
+            next_node = current.next  
+            current.next = prev_node  
+            current.prev = next_node 
+
+            prev_node = current  
+            current = next_node  
+
+        self.head = prev_node 
 
     
 my_dll = DoublyLinkedList(1)
@@ -155,8 +166,7 @@ print("-------")
 # my_dll.insert(1,6)
 # my_dll.print_list()
 
-l = my_dll.is_palindrome()
-print(l)
+my_dll.reverse()
+my_dll.print_list()
 
-print(my_dll.get(l).value)
 
