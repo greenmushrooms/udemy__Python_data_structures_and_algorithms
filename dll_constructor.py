@@ -140,19 +140,21 @@ class DoublyLinkedList:
         return temp
     
     def reverse(self):
-        current = self.head
-        self.tail = self.head  
-        prev_node = None
-
+        if self.length < 1: 
+            return None 
+        current = self.head 
+        temp = None 
         while current is not None:
-            next_node = current.next  
-            current.next = prev_node  
-            current.prev = next_node 
+            temp = current.prev
+            current.prev = current.next
+            current.next = temp
+            current = current.prev
 
-            prev_node = current  
-            current = next_node  
+        temp = self.tail 
+        self.tail = self.head 
+        self.head = temp
 
-        self.head = prev_node 
+        return True
 
     
 my_dll = DoublyLinkedList(1)
