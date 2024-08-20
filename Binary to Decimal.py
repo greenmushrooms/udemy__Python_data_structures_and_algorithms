@@ -1,8 +1,10 @@
+from typing import Optional
+
 class Node:
-    def __init__(self, value):
+    def __init__(self, value) -> None:
         self.value = value
-        self.next = None
-        
+        self.next: Optional['Node'] = None
+
 class LinkedList:
     def __init__(self, value):
         new_node = Node(value)
@@ -19,7 +21,7 @@ class LinkedList:
                 current = current.next
             current.next = new_node
         self.length += 1
-    
+
     def print_list(self):
         if self.head is None:
             print("empty list")
@@ -29,7 +31,7 @@ class LinkedList:
             while temp is not None:
                 values.append(str(temp.value))
                 temp = temp.next
-            print(" -> ".join(values)) 
+            print(" -> ".join(values))
 
     def binary_to_decimal(self):
         if self.head is None:
@@ -40,9 +42,9 @@ class LinkedList:
             position = self.length
             while temp is not None:
                 dec_value = dec_value + temp.value*2**(position-1)
-                position =position- 1  
+                position =position- 1
                 temp = temp.next
-            return dec_value 
+            return dec_value
 
 
 
@@ -105,8 +107,8 @@ try:
     print("Test case 5 passed, returned: ", result)
 except AssertionError:
     print("Test case 5 failed, returned: ", result)
-    
- 
+
+
 """
     EXPECTED OUTPUT:
     ----------------
@@ -116,4 +118,3 @@ except AssertionError:
     Test case 4 passed, returned:  1
     Test case 5 passed, returned:  13
 """
-

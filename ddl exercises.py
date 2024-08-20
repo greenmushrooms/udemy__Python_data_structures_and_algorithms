@@ -1,9 +1,11 @@
+from typing import Optional
+
 class Node:
-    def __init__(self, value):
+    def __init__(self, value) -> None:
         self.value = value
-        self.next = None
-        self.prev = None
-        
+        self.next: Optional['Node'] = None
+        self.prev: Optional['Node'] = None
+
 
 class DoublyLinkedList:
     def __init__(self, value):
@@ -20,7 +22,7 @@ class DoublyLinkedList:
             current_node = current_node.next
             count += 1
         print(" <-> ".join(output))
-        
+
     def append(self, value):
         new_node = Node(value)
         if self.head is None:
@@ -36,7 +38,7 @@ class DoublyLinkedList:
 
     def swap_pairs(self):
         current = self.head
-        
+
         if not current or not current.next:
             return
 
@@ -62,7 +64,7 @@ class DoublyLinkedList:
 
             current = first_node.next
 
-        
+
 
 
 
@@ -76,7 +78,7 @@ print('my_dll before swap_pairs:')
 my_dll.print_list()
 
 print('my_dll after swap_pairs:')
-my_dll.swap_pairs() 
+my_dll.swap_pairs()
 my_dll.print_list()
 
 
